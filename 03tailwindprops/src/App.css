@@ -1,0 +1,72 @@
+/* src/App.css */
+
+/* Reset default margins and paddings for consistent behavior */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Make html, body, and #root take up the full viewport and become a flex container */
+html,
+body,
+#root {
+  height: 100vh; /* Ensure they take at least 100% of the viewport height */
+  width: 100vw; /* Ensure they take 100% of the viewport width */
+  display: flex; /* Enable Flexbox */
+  flex-direction: column; /* Arrange children in a vertical column */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+}
+
+/* Add some spacing between the h1 and the card */
+h1 {
+  margin-bottom: 25px; /* Adjust as needed for desired spacing */
+  text-align: center; /* Ensure the h1 itself is centered */
+}
+
+/* --- Card Specific CSS --- */
+.card-container {
+  /* This ensures the card doesn't stretch beyond reasonable limits */
+  /* //max-width: 90%; */
+  width: fit-content; /* Allow content to dictate width up to max-width */
+  /* If you want a fixed max-width for very large screens, you can add it */
+  /* max-width: 700px; */ /* Example: Maximum width of 700px */
+
+  /* Ensure content wraps if it overflows horizontally */
+  overflow-x: hidden;
+  /* Hide horizontal scrollbar if content spills */
+}
+
+/* Ensure images within the card are responsive */
+.card-container img {
+  max-width: 100%; /* Ensure images don't overflow their direct container */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Removes extra space below images */
+}
+
+/* Adjustments for the text content within the card */
+/* If you want the text content to be centered in mobile view */
+.card-container > div.flex-col > div.flex.items-center {
+  /* Targeting the div containing text spans */
+  text-align: center; /* Center text within this div */
+  flex-direction: column; /* Ensure spans stack vertically on small screens */
+}
+
+/* Adjust the children of the text-containing div to stack and center */
+.card-container > div.flex-col > div.flex.items-center > span {
+  display: block; /* Make spans block-level to stack them */
+  width: 100%; /* Ensure they take full width for centering */
+}
+
+/* Specific adjustments for medium screens and above as per Tailwind's md: breakpoint */
+@media (min-width: 768px) {
+  /* Tailwind's default 'md' breakpoint */
+  .card-container > div.flex-col > div.flex.items-center {
+    text-align: left; /* Reset text align to left for larger screens */
+    flex-direction: column; /* Allow spans to be in a row on larger screens */
+    justify-content: flex-start; /* Align spans to the start */
+    gap: 0; /* Remove gap if Tailwind doesn't handle it for individual spans */
+  }
+}
